@@ -14,6 +14,9 @@ class HomeHotProducts extends StatefulWidget {
 }
 
 class _HomeHotProductsState extends State<HomeHotProducts> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,10 +26,8 @@ class _HomeHotProductsState extends State<HomeHotProducts> {
         itemCount: this.widget.productList.length,
         itemBuilder: (context, index){
           return HomeHotProduct(
-              this.widget.productList[index].name,
-              this.widget.productList[index].photo,
-              this.widget.productList[index].price,
-              this.widget.productList[index].discount,
+              this.widget.productList[index],
+
           );
         },
       ),

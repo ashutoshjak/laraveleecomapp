@@ -4,4 +4,5 @@ class Product{
   String photo;
   int price;
   int discount;
+  String detail;
 }

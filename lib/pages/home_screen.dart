@@ -32,8 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
   var items= [];
   List<Category> _categoryList = List<Category>();
   List<Product> _productList = List<Product>();
-  List<NewProduct> _newproductList = List<NewProduct>();
-  List<Product> _productListByCategory = List<Product>();
+  List<Product> _newproductList = List<Product>();
+
 
 
   static var categoryId;
@@ -80,6 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
       model.photo = data['photo'];
       model.price = data['price'];
       model.discount = data['discount'];
+      model.detail = data['detail'];
 
       setState(() {
         _productList.add(model);
@@ -93,12 +94,13 @@ class _HomeScreenState extends State<HomeScreen> {
     print("Get New Product");
     print(result);
     result['data'].forEach((data){
-      var model = NewProduct();
+      var model = Product();
       model.id = data['id'];
       model.name = data['name'];
       model.photo = data['photo'];
       model.price = data['price'];
       model.discount = data['discount'];
+      model.detail = data['detail'];
 
       setState(() {
         _newproductList.add(model);
@@ -175,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.all(10.0),
               child: Text('New Products'),
             ),
-            HomeNewProducts(newproductList: _newproductList,)
+            HomeNewProducts(productList: _newproductList,)
 
           ],
         ),

@@ -1,5 +1,5 @@
-import 'package:ecommerce1/models/newproduct.dart';
 import 'package:ecommerce1/models/product.dart';
+
 import 'package:flutter/material.dart';
 
 import 'home_new_product.dart';
@@ -8,9 +8,9 @@ import 'home_new_product.dart';
 
 class HomeNewProducts extends StatefulWidget {
 
-  final List<NewProduct> newproductList;
+  final List<Product> productList;
 
-  HomeNewProducts({this.newproductList});
+  HomeNewProducts({this.productList});
 
   @override
   _HomeNewProductsState createState() => _HomeNewProductsState();
@@ -23,13 +23,10 @@ class _HomeNewProductsState extends State<HomeNewProducts> {
       height: 205,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: this.widget.newproductList.length,
+        itemCount: this.widget.productList.length,
         itemBuilder: (context, index){
           return HomeNewProduct(
-            this.widget.newproductList[index].name,
-            this.widget.newproductList[index].photo,
-            this.widget.newproductList[index].price,
-            this.widget.newproductList[index].discount,
+            this.widget.productList[index]
           );
         },
       ),

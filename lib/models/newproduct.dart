@@ -4,4 +4,8 @@ class NewProduct{
   String photo;
   int price;
   int discount;
+  String detail;
+
 }
+
+//not in use recently
