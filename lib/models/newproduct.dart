@@ -5,6 +5,7 @@ class NewProduct{
   int price;
   int discount;
   String detail;
+  int quantity;
 
 }
 

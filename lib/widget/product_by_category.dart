@@ -25,7 +25,9 @@ class _ProductByCategoryState extends State<ProductByCategory> {
               children: <Widget>[
                 Text(this.widget.product.name),
                 Image.network(widget.product.photo, width: 190.0, height: 160.0,),
-                Row(children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
                   Text('Price: ${this.widget.product.price}'),
                   Text('Discount: ${this.widget.product.discount}'),
                 ],)

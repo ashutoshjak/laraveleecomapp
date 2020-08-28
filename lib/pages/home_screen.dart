@@ -81,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
       model.price = data['price'];
       model.discount = data['discount'];
       model.detail = data['detail'];
+      model.quantity = data['quantity'];
 
       setState(() {
         _productList.add(model);
@@ -101,6 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
       model.price = data['price'];
       model.discount = data['discount'];
       model.detail = data['detail'];
+      model.quantity = data['quantity'];
 
       setState(() {
         _newproductList.add(model);
@@ -153,8 +155,44 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
-        title: Text("eComm App",style: TextStyle(fontFamily: "Signatra"),),
+        title: Text("eComm App",),
+//        style: TextStyle(fontFamily: "Signatra"),
         centerTitle: true,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Container(
+              height: 150,
+              width: 30,
+              child: Stack(
+                children: <Widget>[
+                  IconButton(
+                    iconSize: 30,
+                    icon:Icon(Icons.shopping_cart,color: Colors.white,
+                    ),
+                    onPressed: (){
+
+                    },
+                  ),
+                  Positioned(
+                    child: Stack(
+                      children: <Widget>[
+                        Icon(Icons.brightness_1,
+                        size: 25,
+                        color: Colors.black,),
+                        Positioned(
+                          top: 4.0,
+                          right: 8.0,
+                          child: Center(child: Text('0')),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
       ),
       body: Container(
         child: ListView(

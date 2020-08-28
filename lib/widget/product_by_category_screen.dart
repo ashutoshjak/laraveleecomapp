@@ -35,6 +35,7 @@ class _ProductsByCategoryScreenState extends State<ProductsByCategoryScreen> {
       model.price = data['price'];
       model.discount = data['discount'];
       model.detail = data['detail'];
+      model.quantity = data['quantity'];
 
       setState(() {
         _productListByCategory.add(model);
@@ -59,7 +60,8 @@ class _ProductsByCategoryScreenState extends State<ProductsByCategoryScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
-        title: Text(this.widget.categoryName,style: TextStyle(fontFamily: "Signatra"),),
+        title: Text(this.widget.categoryName,),
+//        style: TextStyle(fontFamily: "Signatra"),
         centerTitle: true,
       ),
       body:  Container(
