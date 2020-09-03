@@ -1,4 +1,5 @@
 import 'package:ecommerce1/models/product.dart';
+import 'package:ecommerce1/pages/cart_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce1/services/cart_service.dart';
@@ -22,6 +23,37 @@ class ProductDetail extends StatefulWidget {
 class _ProductDetailState extends State<ProductDetail> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   CartService _cartService = CartService();
+
+  List<Product> _cartItems;
+
+
+  _getCartItems() async {
+    _cartItems = List<Product>();
+    var cartItems = await _cartService.getCartItems();
+    cartItems.forEach((data){
+      var product = Product();
+      product.id = data['productId'];
+      product.name = data['productName'];
+      product.photo = data['productPhoto'];
+      product.price = data['productPrice'];
+      product.discount = data['productDiscount'];
+      product.detail = data['productDetail'] ?? 'No detail';
+      product.quantity = data['productQuantity'];
+
+      setState(() {
+        _cartItems.add(product);
+      });
+    });
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    _getCartItems();
+  }
+
+
 
   _addToCart(BuildContext context, Product product) async {
     var result = await _cartService.addToCart(product);
@@ -50,36 +82,43 @@ class _ProductDetailState extends State<ProductDetail> {
         title: Text(this.widget.product.name,),
 //        style: TextStyle(fontFamily: "Signatra"),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 150,
-              width: 30,
-              child: Stack(
-                children: <Widget>[
-                  IconButton(
-                    iconSize: 30,
-                    icon:Icon(Icons.shopping_cart,color: Colors.white,
-                    ),
-                    onPressed: (){
+          InkWell(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context)=>CartScreen(_cartItems)
+              ));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 150,
+                width: 30,
+                child: Stack(
+                  children: <Widget>[
+                    IconButton(
+                      iconSize: 30,
+                      icon:Icon(Icons.shopping_cart,color: Colors.white,
+                      ),
+                      onPressed: (){
 
-                    },
-                  ),
-                  Positioned(
-                    child: Stack(
-                      children: <Widget>[
-                        Icon(Icons.brightness_1,
-                          size: 25,
-                          color: Colors.black,),
-                        Positioned(
-                          top: 4.0,
-                          right: 8.0,
-                          child: Center(child: Text('0')),
-                        )
-                      ],
+                      },
                     ),
-                  )
-                ],
+                    Positioned(
+                      child: Stack(
+                        children: <Widget>[
+                          Icon(Icons.brightness_1,
+                            size: 25,
+                            color: Colors.black,),
+                          Positioned(
+                            top: 4.0,
+                            right: 8.0,
+                            child: Center(child: Text(_cartItems.length.toString())),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           )
